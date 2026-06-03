@@ -88,10 +88,10 @@ const deleteTour = (req, res) => {
         });
       }
 
-      res.status(201).json({
+      res.status(204).json({
         status: 'success',
         data: {
-          tour,
+          tour: null,
         },
       });
     },
@@ -127,12 +127,8 @@ const createTour = (req, res) => {
     },
   );
 };
-
-app.get(`${baseUrl}`, getAllTours);
-app.get(`${baseUrl}/:id`, getTour);
-app.post(`${baseUrl}`, createTour);
-app.patch(`${baseUrl}/:id`, updateTour);
-app.delete(`${baseUrl}/:id`, deleteTour);
+app.route(`${baseUrl}`).get(getAllTours).post(createTour);
+app.route(`${baseUrl}/:id`).get(getTour).patch(updateTour).delete(deleteTour);
 
 const port = 3000;
 
