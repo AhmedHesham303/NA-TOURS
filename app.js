@@ -9,7 +9,7 @@ const data = fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`);
 const tours = JSON.parse(data);
 
 app.use(express.json());
-
+const baseUrl = '/api/v1/tours';
 const getAllTours = (req, res) => {
   res.status(200).json({
     status: 'success',
@@ -128,11 +128,11 @@ const createTour = (req, res) => {
   );
 };
 
-app.get('/api/v1/tours', getAllTours);
-app.get('/api/v1/tours/:id', getTour);
-app.post('/api/v1/tours', createTour);
-app.patch('/api/v1/tours/:id', updateTour);
-app.delete('/api/v1/tours/:id', deleteTour);
+app.get(`${baseUrl}`, getAllTours);
+app.get(`${baseUrl}/:id`, getTour);
+app.post(`${baseUrl}`, createTour);
+app.patch(`${baseUrl}/:id`, updateTour);
+app.delete(`${baseUrl}/:id`, deleteTour);
 
 const port = 3000;
 
