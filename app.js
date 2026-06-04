@@ -5,9 +5,9 @@ const app = express();
 const fs = require('node:fs');
 
 const data = fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`);
-
+const morgan = require('morgan');
 const tours = JSON.parse(data);
-
+app.use(morgan('dev'));
 app.use(express.json());
 const baseUrl = '/api/v1/tours';
 const getAllTours = (req, res) => {
