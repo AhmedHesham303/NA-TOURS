@@ -12,9 +12,4 @@ const baseUrl = '/api/v1/tours';
 
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
-
-const port = 3000;
-
-app.listen(port, () => {
-  console.log(`running on port number ${port}...`);
-});
+module.exports = app;
