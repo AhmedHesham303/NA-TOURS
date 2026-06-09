@@ -1,6 +1,15 @@
 const fs = require('node:fs');
 const data = fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`);
 const tours = JSON.parse(data);
+const checkId = (req, res, next, val) => {
+  if (req.params.id * 1 > tours.length) {
+    return res.status(404).json({
+      status: 'fail',
+      messge: 'invalid',
+    });
+  }
+  next();
+};
 const getAllTours = (req, res) => {
   res.status(200).json({
     status: 'success',
@@ -58,13 +67,6 @@ const updateTour = (req, res) => {
 const deleteTour = (req, res) => {
   const id = req.params.id * 1;
   const tourIndex = tours.findIndex((t) => t.id === id);
-
-  if (tourIndex === -1) {
-    return res.status(404).json({
-      status: 'error',
-      message: 'Tour not found',
-    });
-  }
 
   tours.splice(tourIndex, 1);
 

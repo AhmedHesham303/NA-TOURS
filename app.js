@@ -4,8 +4,9 @@ const fs = require('node:fs');
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const morgan = require('morgan');
-
-app.use(morgan('dev'));
+if(process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 app.use(express.json());
 
 const baseUrl = '/api/v1/tours';
