@@ -32,7 +32,20 @@ const tourSchema = new mongoose.Schema({
 });
 
 const Tour = mongoose.model('Tour', tourSchema);
+const testTour = new Tour({
+  name: 'The forest hicker2',
+  rating: 4.5,
+  price: 497,
+});
 
+testTour
+  .save()
+  .then((doc) => {
+    console.log(doc);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`running on port number ${port}...`);
