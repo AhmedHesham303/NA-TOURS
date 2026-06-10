@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 app.use(express.json());
-app.use(rexpress.static(`${__dirname}/public`));
+// app.use(rexpress.static(`${__dirname}/public`));
 const baseUrl = '/api/v1/tours';
 
 app.use('/api/v1/tours', tourRouter);
